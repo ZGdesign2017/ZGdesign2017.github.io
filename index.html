@@ -1,219 +1,181 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!-- saved from url=(0027)http://itzoo.info/love.html -->
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>【ZGDESIGN】一个好像很厉害的网站</title>
-        
-        <link type="text/css" rel="stylesheet" href="./Love_files/default.css">
-        <script type="text/javascript" src="./Love_files/jquery.min.js"></script>
-        <script type="text/javascript" src="./Love_files/jscex.min.js"></script>
-        <script type="text/javascript" src="./Love_files/jscex-parser.js"></script>
-        <script type="text/javascript" src="./Love_files/jscex-jit.js"></script>
-        <script type="text/javascript" src="./Love_files/jscex-builderbase.min.js"></script>
-        <script type="text/javascript" src="./Love_files/jscex-async.min.js"></script>
-        <script type="text/javascript" src="./Love_files/jscex-async-powerpack.min.js"></script>
-        <script type="text/javascript" src="./Love_files/functions.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./Love_files/love.js" charset="utf-8"></script>
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title></title>
 
-    </head>
-    <body>
-        <div id="main">
-            <div id="error">亲，您使用的浏览器无法支持即将显示的内容，请换成谷歌(<a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a>)或者火狐(<a href="http://firefox.com.cn/download/">Firefox</a>)浏览器哟~</div>
-            <div id="wrap">
-               <div id="text">
-                    <div id="code">                 
-                    <span class="say"></span><br>
-                    <span class="say">这是一个表白页源码，暂时性填补首页~（末尾彩蛋）</span><br>
-                    <span class="say">不管我到什么时候也永远都是小白</span><br>
-                    <span class="say">永远是空的状态，准备随时灌满</span><br>
-                    <span class="say">然后在置空。——@刘烁</span><br>
-                    <span class="say">由于不是码农这个网站的搭建可谓千辛万苦</span><br>
-                    <span class="say">网站托管于Github，感兴趣可私戳我</span><br>
-                    <span class="say">QQ同邮箱：xu@ZGdesign.vip</span><br>
-                    <span class="say">这里的文字可以是你想对你喜欢的人说的话</span><br>
-                    <span class="say">下方倒计时可设置成相识时间系统会自动计算有多久</span><br>
-                    <span class="say">以后这个页面会修改成个人主页，源码保留到Github</span><br>
-                    <span class="say">（其实网上大把自己去搜索哈哈哈）</span><br>
-                    <br>
-                    <span class="say">还能看到这里的肯定都是真爱了</span><br>
-                     <span class="say">祝男生越来越帅女生越来越漂亮~</span><br>
-                      <span class="say">BGM:芭兰诺芙丝卡 - 少女的祈祷</a></span><br>
-				    <span class="say">彩蛋在这里：<a href="2048/01.html" target="_blank">戳我！戳我！QAQ</a></span><br>
-                   <br>
-                    <span class="say"><span class="space"></span> ——ZGDESIGN</span>
-                    </div>
-              </div>
-                <div id="clock-box">
-                    网站搭建已经..
-                  <div id="clock"></div>
-                </div>
-                <canvas id="canvas" width="1100" height="680"></canvas>
-            </div>
-            <audio src="love.mp3" autoplay="autoplay"></audio>
-        </div>
-    
-    <script>
-    </script>
+  <style>
+    * {
+      margin: 0; padding: 0;
+    }
 
-    <script>
-    (function(){
-        var canvas = $('#canvas');
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
 
-        if (!canvas[0].getContext) {
-            $("#error").show();
-            return false;
-        }
+    #container {
+      overflow: hidden;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+    }
 
-        var width = canvas.width();
-        var height = canvas.height();
-        
-        canvas.attr("width", width);
-        canvas.attr("height", height);
+    #background_video {
+      position: absolute;
 
-        var opts = {
-            seed: {
-                x: width / 2 - 20,
-                color: "rgb(190, 26, 37)",
-                scale: 2
-            },
-            branch: [
-                [535, 680, 570, 250, 500, 200, 30, 100, [
-                    [540, 500, 455, 417, 340, 400, 13, 100, [
-                        [450, 435, 434, 430, 394, 395, 2, 40]
-                    ]],
-                    [550, 445, 600, 356, 680, 345, 12, 100, [
-                        [578, 400, 648, 409, 661, 426, 3, 80]
-                    ]],
-                    [539, 281, 537, 248, 534, 217, 3, 40],
-                    [546, 397, 413, 247, 328, 244, 9, 80, [
-                        [427, 286, 383, 253, 371, 205, 2, 40],
-                        [498, 345, 435, 315, 395, 330, 4, 60]
-                    ]],
-                    [546, 357, 608, 252, 678, 221, 6, 100, [
-                        [590, 293, 646, 277, 648, 271, 2, 80]
-                    ]]
-                ]] 
-            ],
-            bloom: {
-                num: 700,
-                width: 1080,
-                height: 650,
-            },
-            footer: {
-                width: 1200,
-                height: 5,
-                speed: 10,
-            }
-        }
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
 
-        var tree = new Tree(canvas[0], width, height, opts);
-        var seed = tree.seed;
-        var foot = tree.footer;
-        var hold = 1;
+      object-fit: cover;
+      height: 100%; width: 100%;
+    }
 
-        canvas.click(function(e) {
-            var offset = canvas.offset(), x, y;
-            x = e.pageX - offset.left;
-            y = e.pageY - offset.top;
-            if (seed.hover(x, y)) {
-                hold = 0; 
-                canvas.unbind("click");
-                canvas.unbind("mousemove");
-                canvas.removeClass('hand');
-            }
-        }).mousemove(function(e){
-            var offset = canvas.offset(), x, y;
-            x = e.pageX - offset.left;
-            y = e.pageY - offset.top;
-            canvas.toggleClass('hand', seed.hover(x, y));
-        });
+    #video_cover {
+      position: absolute;
 
-        var seedAnimate = eval(Jscex.compile("async", function () {
-            seed.draw();
-            while (hold) {
-                $await(Jscex.Async.sleep(10));
-            }
-            while (seed.canScale()) {
-                seed.scale(0.95);
-                $await(Jscex.Async.sleep(10));
-            }
-            while (seed.canMove()) {
-                seed.move(0, 2);
-                foot.draw();
-                $await(Jscex.Async.sleep(10));
-            }
-        }));
+      width: 100%; height: 100%;
 
-        var growAnimate = eval(Jscex.compile("async", function () {
-            do {
-                tree.grow();
-                $await(Jscex.Async.sleep(10));
-            } while (tree.canGrow());
-        }));
+      background: url('video_cover.jpeg') no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
 
-        var flowAnimate = eval(Jscex.compile("async", function () {
-            do {
-                tree.flower(2);
-                $await(Jscex.Async.sleep(10));
-            } while (tree.canFlower());
-        }));
+    #video_controls {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
 
-        var moveAnimate = eval(Jscex.compile("async", function () {
-            tree.snapshot("p1", 240, 0, 610, 680);
-            while (tree.move("p1", 500, 0)) {
-                foot.draw();
-                $await(Jscex.Async.sleep(10));
-            }
-            foot.draw();
-            tree.snapshot("p2", 500, 0, 610, 680);
+    #play img {
+      width: 100px;
+    }
+    #pause img {
+      width: 90px;
+    }
+    #pause {
+      display: none;
+    }
 
-            // 会有闪烁不得意这样做, (＞﹏＜)
-            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
-            canvas.css("background", "#ffe");
-            $await(Jscex.Async.sleep(300));
-            canvas.css("background", "none");
-        }));
+    @media (min-width: 768px) {
+      #video_controls {
+        display: none;
+      }
+    }
 
-        var jumpAnimate = eval(Jscex.compile("async", function () {
-            var ctx = tree.ctx;
-            while (true) {
-                tree.ctx.clearRect(0, 0, width, height);
-                tree.jump();
-                foot.draw();
-                $await(Jscex.Async.sleep(25));
-            }
-        }));
+    /* Demo page specific styles */
 
-        var textAnimate = eval(Jscex.compile("async", function () {
-            var together = new Date();
-            together.setFullYear(2017, 4, 30);
-            together.setHours(20);
-            together.setMinutes(20);
-            together.setSeconds(0);
-            together.setMilliseconds(0);
+    body {
+      text-align: center;
+      font-family: 'proxima-nova', Helvetica;
+    }
 
-            $("#code").show().typewriter();
-            $("#clock-box").fadeIn(500);
-            while (true) {
-                timeElapse(together);
-                $await(Jscex.Async.sleep(1000));
-            }
-        }));
+    #container {
+      height: 100%;
+    }
 
-        var runAsync = eval(Jscex.compile("async", function () {
-            $await(seedAnimate());
-            $await(growAnimate());
-            $await(flowAnimate());
-            $await(moveAnimate());
+    #overlay {
+      position: absolute;
+      top: 0; right: 0; left: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
 
-            textAnimate().start();
+    #main_content {
+      z-index: 2;
+      position: relative;
+      display: inline-block;
 
-            $await(jumpAnimate());
-        }));
+      /* Vertical center */
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-        runAsync().start();
-    })();
-    </script>
+    #main_content h1 {
+      text-transform: uppercase;
+      font-weight: 600;
+      font-family: 'proxima-nova-condensed', Helvetica;
+      color: #fff;
+      font-size: 35px;
+    }
+
+    #main_content .sub_head {
+      color: rgba(255,255,255,0.5);
+      font-size: 18px;
+    }
+
+    #main_content .info {
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    #links {
+      margin-top: 50px;
+    }
+
+    #links a {
+      border: 2px solid rgba(255,255,255,0.20);
+      border-radius: 61px;
+      font-size: 12px;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 25px;
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    #footer {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+    }
+    #footer a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      margin: 10px;
+      font-size: 12px;
+    }
+    #footer a:first-child {
+      float: left;
+    }
+    #footer a:last-child {
+      float: right;
+    }
+  </style>
 
 
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+</head>
+<body>
+  <div id="container">
+    <video id="background_video" loop muted></video>
+    <div id="video_cover"></div>
+    <div id="overlay"></div>
 
-</body></html>
+    <div id="video_controls">
+      <span id="play">
+        <img src="play.png">
+      </span>
+      <span id="pause">
+        <img src="pause.png">
+      </span>
+    </div>
+
+    <section id="main_content">
+      <div id="head">
+        <h1>ZGDESIGN</h1>
+        <p class="sub_head">Email:xu@zgdesign.vip</p>
+        <p class="info">(视频测试，加载需等待，请稍后)</p>
+      </div>
+
+      
+    </section>
+  </div>
+
+  <script src="bideo.js"></script>
+  <script src="main.js"></script>
+
+  
+</body>
+</html>
